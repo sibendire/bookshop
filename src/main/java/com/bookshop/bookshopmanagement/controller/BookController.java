@@ -5,7 +5,12 @@ import com.bookshop.bookshopmanagement.entity.Book;
 import com.bookshop.bookshopmanagement.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class BookController {
@@ -23,13 +28,26 @@ public class BookController {
     }
 
     @GetMapping("/available_books")
-    public String getAlleBooks() {
-        return "bookList";
+    public ModelAndView getAlleBooks() {
+        List<Book> list = bookService.getAllBooks();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("bookList");
+        modelAndView.addObject("book" ,list);
+        return modelAndView;
+
     }
 
     @PostMapping("/save")
-    public String addBook(@ModelAttribute Book book) {
-        bookService.save(book);
-        return "restricted/available_books";
+    public String addBook(@ModelAttribute @Validated Book book, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+
+            return "bookRegister";
+        } else {
+
+            bookService.save(book);
+            return "redirect:/available_books";
+        }
     }
+
+
 }
