@@ -57,11 +57,15 @@ public class BookController {
         return "my_book";
     }
 
+
+    @RequestMapping("/my_book/{id}")
     public String getBookList(@PathVariable("id") Long id) {
         Book book = bookService.getBookById(id);
         MyBookList myBookList = new MyBookList(book.getId(),book.getBookName(),book.getAuthor(),
                 book.getDateOfPublication(),book.getPrice());
-        myBookList
+        myBookList.
+
+
     }
 
 }
