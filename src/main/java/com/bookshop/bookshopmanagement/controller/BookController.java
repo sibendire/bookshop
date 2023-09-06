@@ -65,7 +65,7 @@ public class BookController {
                 book.getDateOfPublication(),book.getPrice());
         myBookList.
 
-
+     return "redirect/:my_book";
     }
 
 }
