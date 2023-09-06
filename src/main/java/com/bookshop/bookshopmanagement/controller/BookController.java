@@ -3,6 +3,7 @@ package com.bookshop.bookshopmanagement.controller;
 
 import com.bookshop.bookshopmanagement.entity.Book;
 import com.bookshop.bookshopmanagement.service.BookService;
+import com.bookshop.bookshopmanagement.service.MyBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,8 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
+    Autowired
+    private MyBookService myBookService;
 
     @GetMapping("/")
     public String home() {
@@ -32,7 +35,7 @@ public class BookController {
         List<Book> list = bookService.getAllBooks();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("bookList");
-        modelAndView.addObject("book" ,list);
+        modelAndView.addObject("book", list);
         return modelAndView;
 
     }
@@ -49,5 +52,16 @@ public class BookController {
         }
     }
 
+    @GetMapping("/my_book")
+    public String getMyBook() {
+        return "my_book";
+    }
+
+    public String getBookList(@PathVariable("id") Long id) {
+        Book book = bookService.getBookById(id);
+        MyBookList myBookList = new MyBookList(book.getId(),book.getBookName(),book.getAuthor(),
+                book.getDateOfPublication(),book.getPrice());
+        myBookList
+    }
 
 }
