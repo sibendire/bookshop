@@ -20,7 +20,7 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
-
+   @Autowired
     private MyBookService myBookService;
 
     @GetMapping("/")
