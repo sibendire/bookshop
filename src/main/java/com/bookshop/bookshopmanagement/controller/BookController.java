@@ -80,6 +80,7 @@ public class BookController {
     }
     @RequestMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable("id")long id){
+        myBookService.deleteById(id);
         return "redirect:/available_books";
 
     }
