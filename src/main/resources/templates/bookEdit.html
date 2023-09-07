@@ -22,6 +22,7 @@
 <h1 class="text-center">Book Registration</h1>
 <div class="container my-2" style="border: 1px solid black;">
     <form class="col-md-4 offset-md-4" th:action="@{/save}" method="post" th:object="${book}">
+        <input type="hidden" name="id" th:value="${book.id}">
         <div class="mb-3">
             <label for="bookName" class="form-label">Book Name</label>
             <input type="text" class="form-control" id="bookName" aria-describedby="emailHelp" name="bookName" th:value="${book.bookName}">

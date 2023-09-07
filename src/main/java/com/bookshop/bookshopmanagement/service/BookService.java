@@ -22,4 +22,7 @@ public class BookService {
     public Book getBookById(Long id) {
         return bookRepository.findById(id).get();
     }
+    public void deleteById(){
+        return bookRepository.deleteById(id);
+    }
 }
