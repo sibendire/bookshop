@@ -1,7 +1,9 @@
 package com.bookshop.bookshopmanagement.controller;
 
 
+import ch.qos.logback.core.model.Model;
 import com.bookshop.bookshopmanagement.entity.Book;
+import com.bookshop.bookshopmanagement.entity.MyBook;
 import com.bookshop.bookshopmanagement.service.BookService;
 import com.bookshop.bookshopmanagement.service.MyBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
-    Autowired
+
     private MyBookService myBookService;
 
     @GetMapping("/")
@@ -53,7 +55,9 @@ public class BookController {
     }
 
     @GetMapping("/my_book")
-    public String getMyBook() {
+    public String getMyBook(Model model) {
+        List<MyBook> list = myBookService.getAllMyBooks();
+        model.addAttribute("book", list);
         return "my_book";
     }
 
@@ -61,9 +65,9 @@ public class BookController {
     @RequestMapping("/my_book/{id}")
     public String getBookList(@PathVariable("id") Long id) {
         Book book = bookService.getBookById(id);
-        MyBookList myBookList = new MyBookList(book.getId(),book.getBookName(),book.getAuthor(),
+        MyBook myBook = new MyBook(book.getId(),book.getBookName(),book.getAuthor(),
                 book.getDateOfPublication(),book.getPrice());
-        myBookList.
+        myBookService.saveMyBook(myBook);
 
      return "redirect/:my_book";
     }

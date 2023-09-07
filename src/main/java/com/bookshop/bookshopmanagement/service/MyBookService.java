@@ -16,6 +16,10 @@ public class MyBookService {
         myBookRepository.save(myBook);
     }
     public List<MyBook> getAllMyBooks(){
+
         return myBookRepository.findAll();
+    }
+    public void deleteById(long id){
+        myBookRepository.deleteById(id);
     }
 }

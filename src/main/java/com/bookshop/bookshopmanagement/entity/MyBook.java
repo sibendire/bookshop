@@ -5,15 +5,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(schema = "MyBook")
+@Table(name = "MyBook")
 public class MyBook {
     @Id
+    private long id;
     private String bookName;
     private String author;
     private String dateOfPublication;
     private double price;
 
-    public MyBook(String bookName, String author, String dateOfPublication, double price) {
+    public MyBook( long id, String bookName, String author, String dateOfPublication, double price) {
+        this.id = id;
         this.bookName = bookName;
         this.author = author;
         this.dateOfPublication = dateOfPublication;
@@ -38,6 +40,14 @@ public class MyBook {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getDateOfPublication() {
