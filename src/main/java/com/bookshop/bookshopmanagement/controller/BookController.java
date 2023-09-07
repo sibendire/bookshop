@@ -65,11 +65,16 @@ public class BookController {
     @RequestMapping("/my_book/{id}")
     public String getBookList(@PathVariable("id") Long id) {
         Book book = bookService.getBookById(id);
-        MyBook myBook = new MyBook(book.getId(),book.getBookName(),book.getAuthor(),
-                book.getDateOfPublication(),book.getPrice());
+        MyBook myBook = new MyBook(book.getId(), book.getBookName(), book.getAuthor(),
+                book.getDateOfPublication(), book.getPrice());
         myBookService.saveMyBook(myBook);
 
-     return "redirect/:my_book";
+        return "redirect/:my_book";
+    }
+
+    @RequestMapping("/edit_book/{id}")
+    public String editBook() {
+        return "bookEdit";
     }
 
 }

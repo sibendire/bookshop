@@ -15,37 +15,34 @@
             <a class="nav-link me-3" href="/">Home</a>
             <a class="nav-link active" aria-current="page" href="available_books">Available Books</a>
             <a class="nav-link" href="my_book">My Books</a>
-
         </div>
         <a class="nav-link" href="book_register">New Book Register</a>
     </div>
 </nav>
-<h1 class="text-center m-3">List of books available </h1>
-<table class="table table-striped table-hover">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Book Name</th>
-        <th scope="col">Author</th>
-        <th scope="col">Date of publication</th>
-        <th scope="col">Price</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book : ${books}">
-        <th scope="row"></th>
-        <td th: text="${book.id}"></td>
-        <td th: text="${book.bookName}"></td>
-        <td th: text="${book.author}"></td>
-        <td th: text="${book.dateOfPublication}"></td>
-        <td><a class="btn btn-secondary btn-sm" th:href="@{/my_book/{id}(id=${book.id})}">Add To MyBooks</a>
-            <a style="color:blue"  th:href="@{/edit_book/{id}(id=${book.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
-            <a style="color:red"><i class="fa-solid fa-trash"></i></a>
-        </td>
-    </tr>
-
-    </tbody>
-</table>
+<h1 class="text-center">Book Registration</h1>
+<div class="container my-2" style="border: 1px solid black;">
+    <form class="col-md-4 offset-md-4" th:action="@{/save}" method="post">
+        <div class="mb-3">
+            <label for="bookName" class="form-label">Book Name</label>
+            <input type="text" class="form-control" id="bookName" aria-describedby="emailHelp" name="bookName">
+        </div>
+        <div class="mb-3">
+            <label for="textAuthor" class="form-label">Author</label>
+            <input type="text" class="form-control" id="textAuthor" aria-describedby="emailHelp" name="author">
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Date of Publication</label>
+            <input type="text" class="form-control" id="year" aria-describedby="emailHelp" name="publicationDate">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Price</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
+        </div>
+        <center>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </center>
+    </form>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -55,6 +52,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-
 </body>
 </html>
