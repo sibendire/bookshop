@@ -38,7 +38,9 @@
         <td th: text="${book.bookName}"></td>
         <td th: text="${book.author}"></td>
         <td th: text="${book.dateOfPublication}"></td>
-        <td><a class="btn btn-secondary btn-sm" th:href="@{/my_book/{id}(id=${book.id})}">Add To MyBooks</a></td>
+        <td><a class="btn btn-secondary btn-sm" th:href="@{/my_book/{id}(id=${book.id})}">Add To MyBooks</a>
+        <a><i class="fa-solid fa-trash"></i></a>
+        </td>
     </tr>
 
     </tbody>
