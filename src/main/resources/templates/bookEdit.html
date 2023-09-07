@@ -16,27 +16,27 @@
             <a class="nav-link active" aria-current="page" href="available_books">Available Books</a>
             <a class="nav-link" href="my_book">My Books</a>
         </div>
-        <a class="nav-link" href="book_register">New Book Register</a>
+        <a class="nav-link" href="book_register">Edit Book </a>
     </div>
 </nav>
 <h1 class="text-center">Book Registration</h1>
 <div class="container my-2" style="border: 1px solid black;">
-    <form class="col-md-4 offset-md-4" th:action="@{/save}" method="post">
+    <form class="col-md-4 offset-md-4" th:action="@{/save}" method="post" th:object="${book}">
         <div class="mb-3">
             <label for="bookName" class="form-label">Book Name</label>
-            <input type="text" class="form-control" id="bookName" aria-describedby="emailHelp" name="bookName">
+            <input type="text" class="form-control" id="bookName" aria-describedby="emailHelp" name="bookName" th:value="${book.bookName}">
         </div>
         <div class="mb-3">
             <label for="textAuthor" class="form-label">Author</label>
-            <input type="text" class="form-control" id="textAuthor" aria-describedby="emailHelp" name="author">
+            <input type="text" class="form-control" id="textAuthor" aria-describedby="emailHelp" name="author"th:value="${book.author}">
         </div>
         <div class="mb-3">
             <label for="year" class="form-label">Date of Publication</label>
-            <input type="text" class="form-control" id="year" aria-describedby="emailHelp" name="publicationDate">
+            <input type="text" class="form-control" id="year" aria-describedby="emailHelp" name="publicationDate"th:value="${book.publicationDate}">
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Price</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price" th:value="${book.price}">
         </div>
         <center>
             <button type="submit" class="btn btn-primary">Submit</button>

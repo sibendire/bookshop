@@ -73,7 +73,9 @@ public class BookController {
     }
 
     @RequestMapping("/edit_book/{id}")
-    public String editBook() {
+    public String editBook(@PathVariable("id") long id ,Model model) {
+         Book book = bookService.getBookById(id);
+         model.addAttribute("book",book);
         return "bookEdit";
     }
 
