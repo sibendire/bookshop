@@ -31,21 +31,22 @@
         <th scope="col">Author</th>
         <th scope="col">Date of publication</th>
         <th scope="col">Price</th>
+        <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="book : ${books}">
-        <th scope="row"></th>
-        <td th: text="${book.id}"></td>
-        <td th: text="${book.bookName}"></td>
-        <td th: text="${book.author}"></td>
-        <td th: text="${book.dateOfPublication}"></td>
-        <td><a class="btn btn-secondary btn-sm" th:href="@{/my_book/{id}(id=${book.id})}">Add To MyBooks</a>
-            <a style="color:blue"  th:href="@{/edit_book/{id}(id=${book.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
-            <a style="color:red" th:href="@{/deleteBook/{id}(id=${book.id})}"><i class="fa-solid fa-trash"></i></a>
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.bookName}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.dateOfPublication}"></td>
+        <td th:text="${book.price}"></td>
+        <td>
+            <a class="btn btn-secondary btn-sm" th:href="@{/my_book/{id}(id=${book.id})}">Add To MyBooks</a>
+            <a style="color: blue" th:href="@{/edit_book/{id}(id=${book.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a style="color: red" th:href="@{/deleteBook/{id}(id=${book.id})}"><i class="fa-solid fa-trash"></i></a>
         </td>
     </tr>
-
     </tbody>
 </table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
