@@ -54,8 +54,8 @@ public class BookController {
     @GetMapping("/my_book")
     public String getMyBook(Model model) {
         List<MyBook> list = myBookService.getAllMyBooks();
-        model.addAttribute("myBooks", list); // Updated attribute name to "myBooks"
-        return "myBook"; // Assuming you have a "myBook.html" template
+        model.addAttribute("myBooks", list);
+        return "myBook";
     }
 
     @RequestMapping("/my_book/{id}")
