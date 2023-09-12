@@ -16,7 +16,7 @@ public class UserAccountController {
 
     @GetMapping("/account")
     public String createAccount() {
-        return "createAccount";
+        return "signUp";
     }
 
     @PostMapping("/saveUser")

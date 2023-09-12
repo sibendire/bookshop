@@ -34,7 +34,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="book : ${books}">
+  <tr th:each="book : ${selectedBooks}">
     <td th:text="${book.id}"></td>
     <td th:text="${book.bookName}"></td>
     <td th:text="${book.author}"></td>

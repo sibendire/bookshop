@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,6 +22,9 @@ public class BookController {
 
     @Autowired
     private MyBookService myBookService;
+
+    private List<Book> selectedBooks = new ArrayList<>();
+
 
     @GetMapping("/")
     public String home() {
@@ -64,6 +68,7 @@ public class BookController {
         MyBook myBook = new MyBook(book.getId(), book.getBookName(), book.getAuthor(),
                 book.getDateOfPublication(), book.getPrice());
         myBookService.saveMyBook(myBook);
+        selectedBooks.add(book);
 
         return "redirect:/my_book"; // Corrected redirect URL
     }
@@ -71,13 +76,13 @@ public class BookController {
     @RequestMapping("/edit_book/{id}")
     public String editBook(@PathVariable("id") long id, Model model) {
         Book book = bookService.getBookById(id);
-        model.addAttribute("book", book);
+        model.addAttribute("selectedBooks", selectedBooks);
         return "bookEdit";
     }
 
     @RequestMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable("id") long id) {
-        myBookService.deleteById(id);
+        bookService.deleteById(id);
         return "redirect:/available_books";
     }
 }
