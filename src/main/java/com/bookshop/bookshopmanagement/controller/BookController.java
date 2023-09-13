@@ -28,7 +28,7 @@ public class BookController {
 
     @GetMapping("/")
     public String home() {
-        return "home";
+        return "redirect:/signUp";
     }
 
     @GetMapping("/book_register")
@@ -68,15 +68,14 @@ public class BookController {
         MyBook myBook = new MyBook(book.getId(), book.getBookName(), book.getAuthor(),
                 book.getDateOfPublication(), book.getPrice());
         myBookService.saveMyBook(myBook);
-        selectedBooks.add(book);
-
-        return "redirect:/my_book"; // Corrected redirect URL
+       selectedBooks.add(book);
+        return "redirect:/available_book";
     }
 
     @RequestMapping("/edit_book/{id}")
     public String editBook(@PathVariable("id") long id, Model model) {
         Book book = bookService.getBookById(id);
-        model.addAttribute("selectedBooks", selectedBooks);
+        model.addAttribute("book", book);
         return "bookEdit";
     }
 

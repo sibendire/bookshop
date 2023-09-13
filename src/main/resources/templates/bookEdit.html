@@ -6,9 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Shop store</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
-
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
 
@@ -19,28 +17,28 @@
             <a class="nav-link active" aria-current="page" href="available_books">Available Books</a>
             <a class="nav-link" href="my_book">My Books</a>
         </div>
-        <a class="nav-link" href="book_register">Edit Book </a>
+        <a class="nav-link" href="book_register">Edit Book</a>
     </div>
 </nav>
 <h1 class="text-center">Book Registration</h1>
 <div class="container my-2" style="border: 1px solid black;">
     <form class="col-md-4 offset-md-4" th:action="@{/save}" method="post" th:object="${book}">
-        <input type="hidden" name="id" th:value="${book.id}">
+        <input type="hidden" th:field="*{id}">
         <div class="mb-3">
             <label for="bookName" class="form-label">Book Name</label>
-            <input type="text" class="form-control" id="bookName" aria-describedby="emailHelp" name="bookName" th:value="${book.bookName}">
+            <input type="text" class="form-control" id="bookName" aria-describedby="emailHelp" th:field="*{bookName}">
         </div>
         <div class="mb-3">
             <label for="textAuthor" class="form-label">Author</label>
-            <input type="text" class="form-control" id="textAuthor" aria-describedby="emailHelp" name="author"th:value="${book.author}">
+            <input type="text" class="form-control" id="textAuthor" aria-describedby="emailHelp" th:field="*{author}">
         </div>
         <div class="mb-3">
             <label for="year" class="form-label">Date of Publication</label>
-            <input type="text" class="form-control" id="year" aria-describedby="emailHelp" name="publicationDate"th:value="${book.publicationDate}">
+            <input type="text" class="form-control" id="year" aria-describedby="emailHelp" th:field="*{dateOfPublication}">
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Price</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price" th:value="${book.price}">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" th:field="*{price}">
         </div>
         <center>
             <button type="submit" class="btn btn-primary">Submit</button>
