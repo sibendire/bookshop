@@ -38,12 +38,12 @@
     <td th:text="${book.id}"></td>
     <td th:text="${book.bookName}"></td>
     <td th:text="${book.author}"></td>
-    <td th:text="${book.dateOfPublication}"></td>
+    <td th:date="${book.dateOfPublication}"></td>
     <td th:text="${book.price}"></td>
     <td>
-      <a style="color: green "  th:href="@{/edit_book/{id}(id=${book.id})}"><i class="fa fa-pencil-square-o" aria-hidden="false"></i>
+      <a style="color: green "  th:href="@{/edit_book/{id}(id=${book.id})}"><i class="btn btn-primary">Update</i>
       </a>
-      <a style="color:red" th:href="@{/delete/{id}(id=${book.id})}"><i class="fa-regular fa-trash"></i></a>
+      <a style="color:red" th:href="@{/delete/{id}(id=${book.id})}"><i class="btn btn-danger">Delete</i></a>
     </td>
   </tr>
   </tbody>
