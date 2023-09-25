@@ -12,8 +12,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class BookController {
@@ -48,12 +52,30 @@ public class BookController {
     @PostMapping("/save")
     public String addBook(@ModelAttribute @Validated Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "bookRegister";
-        } else {
-            bookService.save(book);
-            return "redirect:/available_books";
+            return "bookRegister"; // Return to the registration page for validation errors
         }
+
+        String dateText = book.getDateOfPublication(); // Get the date text from the book object
+
+        if (dateText != null && !dateText.isEmpty()) {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date parsedDate = dateFormat.parse(dateText);
+                book.setDateOfPublication(String.valueOf(parsedDate));
+            } catch (ParseException e) {
+                bindingResult.rejectValue("dateOfPublication", "error.dateOfPublication", "Invalid date format");
+                return "bookRegister"; // Return to the registration page for date parsing errors
+            }
+        } else {
+            bindingResult.rejectValue("dateOfPublication", "error.dateOfPublication", "Date is required");
+            return "bookRegister"; // Return to the registration page for missing date
+        }
+
+        bookService.save(book);
+        return "redirect:/available_books"; // Redirect to the book list page on successful submission
     }
+
+
 
     @GetMapping("/my_book")
     public String getMyBook(Model model) {
@@ -63,13 +85,13 @@ public class BookController {
     }
 
     @RequestMapping("/my_book/{id}")
-    public String getBookList(@PathVariable("id") Long id) {
+    public String addBookToCollection(@PathVariable("id") Long id) {
         Book book = bookService.getBookById(id);
         MyBook myBook = new MyBook(book.getId(), book.getBookName(), book.getAuthor(),
                 book.getDateOfPublication(), book.getPrice());
         myBookService.saveMyBook(myBook);
-       selectedBooks.add(book);
-        return "redirect:/available_book";
+        selectedBooks.add(book);
+        return "redirect:/available_books"; // Redirect to the correct URL
     }
 
     @RequestMapping("/edit_book/{id}")

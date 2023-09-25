@@ -4,7 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.intellij.lang.annotations.Pattern;
 import org.springframework.validation.annotation.Validated;
+//import javax.validation.constraints.Pattern;
+
 
 @Entity
 @Validated
@@ -14,8 +17,11 @@ public class Book {
     private long id;
     private String bookName;
     private String author;
+    //@Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Date format must be yyyy-MM-dd")
     private String dateOfPublication;
     private double price;
+
+
 
     public Book(long id, String bookName, String author, String dateOfPublication, double price) {
         this.id = id;
