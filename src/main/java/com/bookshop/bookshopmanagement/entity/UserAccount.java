@@ -1,11 +1,13 @@
-package com.bookshop.bookshopmanagement.entity;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class UserAccount {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String lastName;
@@ -14,8 +16,10 @@ public class UserAccount {
     private String password;
 
     public UserAccount() {
-        super();
     }
+
+
+
 
     public UserAccount(long id, String firstName, String lastName, String phoneNumber, String email, String password) {
         this.id = id;
@@ -25,6 +29,8 @@ public class UserAccount {
         this.email = email;
         this.password = password;
     }
+// Constructors, getters, setters...
+
 
     public long getId() {
         return id;
@@ -72,5 +78,11 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    // Password hashing method
+    public void hashPassword() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(this.password);
     }
 }

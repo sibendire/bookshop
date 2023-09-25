@@ -1,32 +1,36 @@
 package com.bookshop.bookshopmanagement.controller;
 
-import com.bookshop.bookshopmanagement.entity.UserAccount;
-import com.bookshop.bookshopmanagement.service.UserAccountService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import javax.servlet.http.HttpSession;
 
 @Controller
-public class UserAccountController {
+public class LoginController {
     @Autowired
     private UserAccountService userAccountService;
 
-    @GetMapping("/signUp")
-    public String createAccount() {
-        return "signUp";
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login"; // Render the login form view
     }
 
-    @PostMapping("/saveUser")
-    public String addUser(@ModelAttribute @Validated UserAccount userAccount, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "signUp";
+    @PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
+        // Implement authentication logic using userAccountService
+        boolean authenticated = userAccountService.authenticateUser(email, password);
+
+        if (authenticated) {
+            // Set user information in the session if needed
+            // Redirect to a welcome or profile page upon successful login
+            return "redirect:/welcome";
         } else {
-            userAccountService.save(userAccount);
-            return "redirect:/login";
+            model.addAttribute("loginError", true); // Add an error attribute to display in the view
+            return "login"; // Return to the login form with an error message
         }
     }
 }
