@@ -32,7 +32,7 @@ public class BookController {
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/signUp";
+        return "redirect:/account";
     }
 
     @GetMapping("/book_register")

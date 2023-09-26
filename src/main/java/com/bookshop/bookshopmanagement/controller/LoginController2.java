@@ -13,24 +13,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController2 {
     @Autowired
     private UserAccountService userAccountService;
-
     @GetMapping("/login")
     public String showLoginForm() {
         return "login"; // Render the login form view
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
-        // Implement authentication logic using userAccountService
-        boolean authenticated = userAccountService.authenticateUser(email, password);
+    @GetMapping("/signUp")
+    public String showRegistrationForm() {
+        return "account"; // Render the registration form view
+    }
 
-        if (authenticated) {
+    @PostMapping("/signUp")
+    public String register(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
+        // Implement account creation logic using userAccountService
+        boolean accountCreated = userAccountService.createAccountIfNotExists(email, password);
+
+        if (accountCreated) {
+            // Account was created successfully, you can choose to automatically log in the user
             // Set user information in the session if needed
-            // Redirect to a welcome or profile page upon successful login
-            return "redirect:/welcome";
+            // Redirect to a welcome or profile page upon successful registration
+            return "redirect:/login";
         } else {
-            model.addAttribute("loginError", true); // Add an error attribute to display in the view
-            return "login"; // Return to the login form with an error message
+            model.addAttribute("registrationError", true); // Add an error attribute to display in the view
+            return "account"; // Return to the registration form with an error message
         }
     }
 }

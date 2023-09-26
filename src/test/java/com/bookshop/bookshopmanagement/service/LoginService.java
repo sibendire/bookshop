@@ -30,7 +30,4 @@ public class LoginService {
         return false;
     }
 
-//    public boolean authenticateUser (String email, String password){
-//        return true;
-//    }
 }
