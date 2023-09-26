@@ -3,6 +3,7 @@ package com.bookshop.bookshopmanagement.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "Login")
@@ -41,7 +42,8 @@ public class Login {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void hashPassword() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(this.password);
     }
 }

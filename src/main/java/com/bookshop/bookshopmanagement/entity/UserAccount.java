@@ -1,8 +1,10 @@
+package com.bookshop.bookshopmanagement.entity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 @Entity
 public class UserAccount {
@@ -81,8 +83,5 @@ public class UserAccount {
     }
 
     // Password hashing method
-    public void hashPassword() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(this.password);
-    }
+
 }
