@@ -1,20 +1,23 @@
 package com.bookshop.bookshopmanagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.apache.catalina.User;
 
 
 @Entity
-public class UserAccount {
+public class UserAccount  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false,length = 30)
     private String firstName;
+    @Column(nullable = false,length = 30)
     private String lastName;
+    @Column(nullable = false,length = 30)
     private String phoneNumber;
+    @Column(nullable = false,unique = true,length = 80)
     private String email;
+    @Column(nullable = false,length = 64)
     private String password;
 
     public UserAccount() {
@@ -82,6 +85,10 @@ public class UserAccount {
         this.password = password;
     }
 
-    // Password hashing method
+    public User findUserByEmail(String email) {
+        return findUserByEmail(email);
+    }
+
+
 
 }

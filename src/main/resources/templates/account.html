@@ -22,23 +22,23 @@
     <form class="col-md-4 offset-md-4" th:action="@{/saveUser}" method="post">
         <div class="mb-3">
             <label for="firstName" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="firstName">
+            <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name="firstName" required>
         </div>
         <div class="mb-3">
             <label for="lastName" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name="lastName">
+            <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name="lastName" required>
         </div>
         <div class="mb-3">
             <label for="phoneNumber" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp" name="phoneNumber">
+            <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp" name="phoneNumber" required>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="text" class="form-control" id="password" aria-describedby="emailHelp" name="password">
+            <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="password" required>
         </div>
         <center>
             <button type="submit" class="btn btn-success">Submit</button>

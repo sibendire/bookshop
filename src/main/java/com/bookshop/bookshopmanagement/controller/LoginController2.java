@@ -1,5 +1,6 @@
 package com.bookshop.bookshopmanagement.controller;
 
+import com.bookshop.bookshopmanagement.entity.UserAccount;
 import com.bookshop.bookshopmanagement.service.UserAccountService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class LoginController2 {
     }
 
     @GetMapping("/signUp")
-    public String showRegistrationForm() {
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("UserAccount",new UserAccount());
         return "account"; // Render the registration form view
     }
 
