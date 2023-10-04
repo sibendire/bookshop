@@ -1,6 +1,7 @@
 package com.bookshop.bookshopmanagement.controller;
 
 import com.bookshop.bookshopmanagement.entity.UserAccount;
+import com.bookshop.bookshopmanagement.service.UserAccountRepository;
 import com.bookshop.bookshopmanagement.service.UserAccountService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController2 {
     @Autowired
     private UserAccountService userAccountService;
+    @Autowired
+    private UserAccountRepository userAccountRepository;
+
+    public LoginController2(UserAccountService userAccountService,UserAccountRepository userAccountRepository) {
+        this.userAccountService = userAccountService;
+        this.userAccountRepository = userAccountRepository;
+    }
+
     @GetMapping("/login")
     public String showLoginForm() {
         return "login"; // Render the login form view
@@ -23,6 +32,12 @@ public class LoginController2 {
     public String showRegistrationForm(Model model) {
         model.addAttribute("UserAccount",new UserAccount());
         return "account"; // Render the registration form view
+    }
+    @PostMapping("/saveUser")
+    public String registration(UserAccount userAccount){
+        userAccountRepository.saveUser(userAccount);
+
+        return "redirect:/login";
     }
 
     @PostMapping("/signUp")
