@@ -1,7 +1,7 @@
 package com.bookshop.bookshopmanagement.controller;
 
 import com.bookshop.bookshopmanagement.entity.UserAccount;
-import com.bookshop.bookshopmanagement.service.UserAccountRepository;
+import com.bookshop.bookshopmanagement.repository.UserAccountRepository;
 import com.bookshop.bookshopmanagement.service.UserAccountService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,8 @@ public class LoginController2 {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
-    public LoginController2(UserAccountService userAccountService,UserAccountRepository userAccountRepository) {
+
+    public LoginController2(UserAccountService userAccountService, UserAccountRepository userAccountRepository) {
         this.userAccountService = userAccountService;
         this.userAccountRepository = userAccountRepository;
     }
@@ -35,7 +36,7 @@ public class LoginController2 {
     }
     @PostMapping("/saveUser")
     public String registration(UserAccount userAccount){
-        userAccountRepository.saveUser(userAccount);
+        userAccountRepository.save(userAccount);
 
         return "redirect:/login";
     }
