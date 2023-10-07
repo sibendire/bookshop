@@ -3,13 +3,15 @@ package com.bookshop.bookshopmanagement.controller;
 import com.bookshop.bookshopmanagement.entity.UserAccount;
 import com.bookshop.bookshopmanagement.repository.UserAccountRepository;
 import com.bookshop.bookshopmanagement.service.UserAccountService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController2 {
@@ -36,6 +38,9 @@ public class LoginController2 {
     }
     @PostMapping("/saveUser")
     public String registration(UserAccount userAccount){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = bCryptPasswordEncoder.encode(userAccount.getPassword());
+        userAccount.getPassword();
         userAccountRepository.save(userAccount);
 
         return "redirect:/login";

@@ -1,7 +1,8 @@
 package com.bookshop.bookshopmanagement.entity;
 
-import jakarta.persistence.*;
 import org.apache.catalina.User;
+
+import javax.persistence.*;
 
 
 @Entity
