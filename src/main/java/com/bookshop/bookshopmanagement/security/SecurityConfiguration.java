@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/signUp").permitAll() // Allow access to registration page
+                .antMatchers("/signUp").permitAll() // Allow access to the registration page
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -34,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public <AuthenticationManagerBuilder> void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userAccountService)
                 .passwordEncoder(passwordEncoder());
