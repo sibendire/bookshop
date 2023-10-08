@@ -24,11 +24,11 @@
     <form class="col-md-4 offset-md-4" th:action="@{/login}" method="post">
         <div class="mb-3">
             <label for="userName" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="userName" aria-describedby="emailHelp" name="userName">
+            <input type="text" class="form-control" id="userName" aria-describedby="emailHelp" name="userName" required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="password">
+            <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="password"required>
         </div>
         <center>
             <button type="submit" class="btn btn-primary">Login</button>
