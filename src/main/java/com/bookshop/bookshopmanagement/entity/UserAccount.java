@@ -1,42 +1,32 @@
 package com.bookshop.bookshopmanagement.entity;
 
-import org.apache.catalina.User;
-
 import javax.persistence.*;
 
-
 @Entity
-public class UserAccount  {
+public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = false,length = 30)
+
+    @Column(nullable = false, length = 30)
     private String firstName;
-    @Column(nullable = false,length = 30)
+
+    @Column(nullable = false, length = 30)
     private String lastName;
-    @Column(nullable = false,length = 30)
+
+    @Column(nullable = false, length = 30)
     private String phoneNumber;
-    @Column(nullable = false,unique = true,length = 80)
+
+    @Column(nullable = false, unique = true, length = 80)
     private String email;
-    @Column(nullable = false,length = 64)
+
+    @Column(nullable = false, length = 64)
     private String password;
 
     public UserAccount() {
     }
 
-
-
-
-    public UserAccount(long id, String firstName, String lastName, String phoneNumber, String email, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-    }
-// Constructors, getters, setters...
-
+    // Constructors, getters, setters...
 
     public long getId() {
         return id;
@@ -85,11 +75,4 @@ public class UserAccount  {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public User findUserByEmail(String email) {
-        return findUserByEmail(email);
-    }
-
-
-
 }
